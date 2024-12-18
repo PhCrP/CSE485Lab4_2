@@ -12,5 +12,5 @@ Danh sách các thành viên trong dự án:
 |-----|--------------------|-----------------------|
 | 1   | Nguyễn Trọng Nhất  | Quản lý sách          |
 | 2   | Phùng Văn Cương    | Quản lý độc giả       |
-| 3   | Nguyễn Viết Phương | Quản lý mược trả sách |
+| 3   | Nguyễn Viết Phương | Quản lý mượn trả sách |
 

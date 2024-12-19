@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: php-laravel-bh
+    container_name: php-laravel-lb
     volumes:
       - ./app_quan_ly_bh:/var/www/html
     ports:
@@ -17,7 +17,7 @@ services:
 
   mysql:
     image: mysql:8.0
-    container_name: mysql-laravel-bh
+    container_name: mysql-laravel-lb
     environment:
       MYSQL_ROOT_PASSWORD: 123456789
       MYSQL_DATABASE: taskapp

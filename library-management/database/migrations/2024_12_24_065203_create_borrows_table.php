@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Borrows', function (Blueprint $table) {
+        Schema::create('borrows', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('reader_id')->constrained('readers')->onDelete('cascade');
-            $table->foreignId('book_id')->constrained('books')->onDelete('cascade');
+            $table->unsignedBigInteger('reader_id');
+            $table->unsignedBigInteger('book_id');
             $table->date('borrow_date');
-            $table->date('return_date')->nullable();
-            $table->enum('status', ['borrowed', 'returned'])->default('borrowed');
+            $table->date('return_date');
+            $table->boolean('status')->default(0);
             $table->timestamps();
+            $table->foreign('reader_id')->references('id')->on('readers');
+            $table->foreign('book_id')->references('id')->on('books');
         });
     }
 
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Borrows');
+        Schema::dropIfExists('borrows');
     }
 };

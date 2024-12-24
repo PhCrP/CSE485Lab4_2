@@ -28,12 +28,20 @@ class BorrowController extends Controller
             'reader_id' => 'required|exists:readers,id',
             'book_id' => 'required|exists:books,id',
             'borrow_date' => 'required|date',
-            'return_date' => 'required|date|after:borrow_date',
+            'return_date' => 'required|date',
+            'status' => 'required|boolean',
         ]);
 
         Borrow::create($request->all());
-        return redirect()->route('borrows.index')->with('success', 'Borrow record created successfully.');
+
+        return redirect()->route('borrows.index')->with('success', 'Borrow entry added successfully!');
     }
+
+    public function cancel()
+    {
+        return redirect()->route('borrows.index')->with('warning', 'Borrow creation canceled!');
+    }
+
 
     public function show($id)
     {

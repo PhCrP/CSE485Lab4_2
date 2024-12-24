@@ -3,8 +3,8 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h3>Borrows</h3>
-        <a href="{{ route('borrows.create') }}" class="btn btn-primary">Add New Borrow Record</a>
+        <h3>Borrowed Books</h3>
+        <a href="{{ route('borrows.create') }}" class="btn btn-primary">Add New Borrow</a>
     </div>
     <div class="card-body">
         <table class="table table-striped">
@@ -27,8 +27,9 @@
                     <td>{{ $borrow->book->name }}</td>
                     <td>{{ $borrow->borrow_date }}</td>
                     <td>{{ $borrow->return_date }}</td>
-                    <td>{{ $borrow->status ? 'Returned' : 'Borrowing' }}</td>
+                    <td>{{ $borrow->status ? 'Returned' : 'Borrowed' }}</td>
                     <td>
+                        <a href="{{ route('borrows.show', $borrow->id) }}" class="btn btn-info btn-sm">View</a>
                         <a href="{{ route('borrows.edit', $borrow->id) }}" class="btn btn-warning btn-sm">Edit</a>
                         <form action="{{ route('borrows.destroy', $borrow->id) }}" method="POST" style="display:inline-block;">
                             @csrf

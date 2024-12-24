@@ -32,5 +32,4 @@
             <a href="{{ route('books.index') }}" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
-</div>
-@endsection
+    @endsection

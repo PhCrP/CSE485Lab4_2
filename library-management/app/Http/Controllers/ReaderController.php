@@ -28,8 +28,15 @@ class ReaderController extends Controller
         ]);
 
         Reader::create($request->all());
-        return redirect()->route('readers.index')->with('success', 'Reader created successfully.');
+
+        return redirect()->route('readers.index')->with('success', 'Reader added successfully!');
     }
+
+    public function cancel()
+    {
+        return redirect()->route('readers.index')->with('warning', 'Reader creation canceled!');
+    }
+
 
     public function show($id)
     {

@@ -45,7 +45,13 @@
     </table>
 
     <div class="d-flex justify-content-center">
+        @if($books->lastPage() > 1)
         {{ $books->links() }}
+        @else
+        <div class="pagination">
+            <span class="page-link disabled">1</span>
+        </div>
+        @endif
     </div>
 </div>
 

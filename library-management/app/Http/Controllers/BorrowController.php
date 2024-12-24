@@ -11,7 +11,7 @@ class BorrowController extends Controller
 {
     public function index()
     {
-        $borrows = Borrow::with(['reader', 'book'])->get();
+        $borrows = Borrow::latest()->paginate(5);
         return view('borrows.index', compact('borrows'));
     }
 
@@ -25,16 +25,22 @@ class BorrowController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'reader_id' => 'required|exists:readers,id',
-            'book_id' => 'required|exists:books,id',
+            'reader_id' => 'required',
+            'book_id' => 'required',
             'borrow_date' => 'required|date',
             'return_date' => 'required|date',
             'status' => 'required|boolean',
         ]);
 
-        Borrow::create($request->all());
+        Borrow::create([
+            'reader_id' => $request->reader_id,
+            'book_id' => $request->book_id,
+            'borrow_date' => $request->borrow_date,
+            'return_date' => $request->return_date,
+            'status' => $request->status,
+        ]);
 
-        return redirect()->route('borrows.index')->with('success', 'Borrow entry added successfully!');
+        return redirect()->route('borrows.index')->with('success', 'Borrow created successfully!');
     }
 
     public function cancel()

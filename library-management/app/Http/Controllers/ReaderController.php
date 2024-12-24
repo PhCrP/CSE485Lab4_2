@@ -9,7 +9,7 @@ class ReaderController extends Controller
 {
     public function index()
     {
-        $readers = Reader::all();
+        $readers = Reader::orderBy('id', 'desc')->paginate(5);
         return view('readers.index', compact('readers'));
     }
 

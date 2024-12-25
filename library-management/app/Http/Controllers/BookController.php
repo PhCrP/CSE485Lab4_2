@@ -9,7 +9,7 @@ class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::all();
+        $books = Book::orderBy('id', 'desc')->paginate(5);
         return view('books.index', compact('books'));
     }
 
@@ -63,6 +63,6 @@ class BookController extends Controller
     {
         $book = Book::findOrFail($id);
         $book->delete();
-        return redirect()->route('books.index')->with('success', 'Book deleted successfully.');
+        return redirect()->route('books.index')->with('success', 'Book has been deleted successfully.');
     }
 }

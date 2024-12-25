@@ -81,11 +81,10 @@
     document.addEventListener('DOMContentLoaded', function() {
         const deleteModal = document.getElementById('confirmDeleteModal');
         deleteModal.addEventListener('show.bs.modal', function(event) {
-            const button = event.relatedTarget; // Nút bấm mở modal
-            const bookId = button.getAttribute('data-task-id'); // Lấy ID từ data-task-id
+            const button = event.relatedTarget; 
+            const bookId = button.getAttribute('data-task-id');
             const form = document.getElementById('deleteForm');
 
-            // Thay thế ':id' trong URL bằng ID thực tế
             const action = form.action.replace(':id', bookId);
             form.action = action;
         });
